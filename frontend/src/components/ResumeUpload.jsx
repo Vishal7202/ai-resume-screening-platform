@@ -9,6 +9,23 @@ const ResumeUpload = ({
   const [fileType, setFileType] = useState("all");
  return (
   <div className="w-full bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+
+    {successMessage && (
+  <div
+    className="
+    mb-4
+    p-4
+    rounded-xl
+    bg-green-50
+    border
+    border-green-200
+    text-green-700
+    font-medium
+    "
+  >
+    ✅ {successMessage}
+  </div>
+)}
      <select
  className="w-full border border-slate-300 rounded-xl p-3 mb-4 bg-white"
   value={fileType}
