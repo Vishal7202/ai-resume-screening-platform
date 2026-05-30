@@ -39,6 +39,10 @@ const app = express();
 const uploadedFingerprints = new Set();
 app.use(cors());
 app.use(express.json());
+app.use(
+  "/uploads",
+  express.static("uploads")
+);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -119,6 +123,8 @@ uploadedFingerprints.add(fingerprint);
   name: file.originalname,
   resumeText: extractedText,
   fingerprint,
+  fileUrl:
+    `https://ai-resume-screening-backend-g2eh.onrender.com/uploads/${file.filename}`,
 });
     }
 
@@ -219,7 +225,8 @@ return {
   name: candidate.name,
   score,
   matchedSkills,
-  missingSkills
+  missingSkills,
+  fileUrl: candidate.fileUrl,
 };
   });
 

@@ -39,6 +39,11 @@ files.forEach((file) => {
    setUploadedResumes(
   response.data.candidates
 );
+console.log(
+  "Uploaded Candidates:",
+  response.data.candidates
+);
+
 setSuccessMessage(
   `${response.data.candidates.length} Resume Uploaded Successfully`
 );
@@ -278,6 +283,9 @@ focus:ring-slate-300
               <th className="p-4 text-left">Matched Skills</th>
               <th className="p-4 text-left">Missing Skills</th>
               <th className="p-4 text-left">Status</th>
+              <th className="p-4 text-left">
+  Resume
+</th>
             </tr>
           </thead>
 
@@ -333,6 +341,27 @@ focus:ring-slate-300
       ? "Qualified"
       : "Rejected"}
   </span>
+</td>
+
+<td className="p-4">
+
+  <a
+    href={candidate.fileUrl}
+    target="_blank"
+    rel="noreferrer"
+    className="
+    bg-blue-600
+    hover:bg-blue-700
+    text-white
+    px-3
+    py-2
+    rounded-lg
+    text-sm
+    "
+  >
+    Download
+  </a>
+
 </td>
       </tr>
     ))
