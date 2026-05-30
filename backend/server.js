@@ -1,6 +1,7 @@
 const fs = require("fs");
 const pdfParse = require("pdf-parse");
 const mammoth = require("mammoth");
+const crypto = require("crypto");
 const skillsList = [
   "react",
   "node.js",
@@ -96,11 +97,21 @@ const pdfText = await parser.getText();
 
         extractedText = result.value;
       }
+      const normalizedText = extractedText
+  .toLowerCase()
+  .replace(/\s+/g, " ")
+  .trim();
 
-      candidates.push({
-        name: file.originalname,
-        resumeText: extractedText,
-      });
+const fingerprint = crypto
+  .createHash("sha256")
+  .update(normalizedText)
+  .digest("hex");
+
+     candidates.push({
+  name: file.originalname,
+  resumeText: extractedText,
+  fingerprint,
+});
     }
 
     res.json({
