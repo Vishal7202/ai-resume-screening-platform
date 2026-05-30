@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import ResumeUpload from "../components/ResumeUpload";
+import JobDescription from "../components/JobDescription";
 
 function Home() {
 const [jd, setJd] = useState("");
@@ -187,29 +188,14 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
   />
 </div>
 
-    {/* Job Description */}
-    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 mb-8">
-      <h2 className="text-2xl font-bold mb-4">
-        Job Description
-      </h2>
+   {/* Job Description */}
 
-      <textarea
-        rows="7"
-        value={jd}
-        onChange={(e) => setJd(e.target.value)}
-        placeholder="Paste Job Description here..."
-       className="
-w-full
-border
-border-slate-300
-rounded-2xl
-p-5
-focus:outline-none
-focus:ring-2
-focus:ring-slate-300
-"
-      />
-    </div>
+<div className="mb-8">
+  <JobDescription
+    jdText={jd}
+    setJdText={setJd}
+  />
+</div>
 
     {/* Analyze Button */}
     <div className="mb-10">
@@ -368,7 +354,7 @@ focus:ring-slate-300
   ) : (
     <tr>
       <td
-        colSpan="5"
+        colSpan="7"
         className="text-center p-8 text-gray-500"
       >
         No candidates analyzed yet
