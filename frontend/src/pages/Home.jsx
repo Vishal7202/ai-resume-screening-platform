@@ -8,6 +8,7 @@ const [results, setResults] = useState([]);
 const [loading, setLoading] = useState(false);
 const [files, setFiles] = useState([]);
 const [uploadedResumes, setUploadedResumes] = useState([]);
+const [successMessage, setSuccessMessage] = useState("");
 
 const filteredCandidates = results.filter((candidate) =>
   candidate.name.toLowerCase().includes(search.toLowerCase())
@@ -36,6 +37,13 @@ files.forEach((file) => {
    setUploadedResumes(
   response.data.candidates
 );
+setSuccessMessage(
+  `${response.data.candidates.length} Resume Uploaded Successfully`
+);
+setTimeout(() => {
+  setSuccessMessage("");
+}, 3000);
+
 
   } catch (error) {
 
@@ -107,9 +115,15 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
 
     {/* Upload Resume */}
     <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 mb-8">
-      <h2 className="text-2xl font-bold mb-4">
-        Upload Resumes
-      </h2>
+      <h2 className="text-4xl font-bold mb-6">
+  Upload Resumes
+</h2>
+
+{successMessage && (
+  <div className="mb-4 p-3 bg-green-100 border border-green-300 text-green-700 rounded-xl">
+    ✅ {successMessage}
+  </div>
+)}
 
      <input
   type="file"
@@ -126,6 +140,18 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
   cursor-pointer
   "
 />
+{files.length > 0 && (
+  <div className="mt-4 space-y-2">
+    {files.map((file, index) => (
+      <div
+        key={index}
+        className="bg-slate-100 p-2 rounded-lg"
+      >
+        📄 {file.name}
+      </div>
+    ))}
+  </div>
+)}
 <button
   onClick={handleUpload}
   className="
@@ -139,7 +165,9 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
   font-medium
   "
 >
-  Upload Resume
+ {files.length > 1
+  ? `Upload ${files.length} Resumes`
+  : "Upload Resume"}
 </button>
     </div>
 
@@ -240,8 +268,12 @@ focus:ring-slate-300
 </td>
 
         <td className="p-4 font-medium">
-          {candidate.name.replace(".pdf", "")}
-        </td>
+  {candidate.name
+    .replace(".pdf", "")
+    .replace(".docx", "")
+    .replace(".doc", "")
+  }
+</td>
 
         <td className="p-4">
           <span
