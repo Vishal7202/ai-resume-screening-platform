@@ -121,7 +121,7 @@ const JobDescription = ({
           </h3>
 
           <p className="text-sm text-slate-500 mt-1">
-            TXT File Supported
+            Select PDF, DOCX or TXT File
           </p>
 
         </div>
