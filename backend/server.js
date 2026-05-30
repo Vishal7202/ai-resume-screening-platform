@@ -111,6 +111,13 @@ const fingerprint = crypto
   .update(normalizedText)
   .digest("hex");
 
+  console.log("FILE:", file.originalname);
+console.log("FINGERPRINT:", fingerprint);
+console.log(
+  "ALREADY EXISTS:",
+  uploadedFingerprints.has(fingerprint)
+);
+
   if (uploadedFingerprints.has(fingerprint)) {
 
   continue;
