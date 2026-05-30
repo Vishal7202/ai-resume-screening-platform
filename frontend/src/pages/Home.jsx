@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import ResumeUpload from "../components/ResumeUpload";
 
 function Home() {
 const [jd, setJd] = useState("");
@@ -114,62 +115,18 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
   <div className="max-w-7xl mx-auto px-6 py-10">
 
     {/* Upload Resume */}
-    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 mb-8">
-      <h2 className="text-4xl font-bold mb-6">
-  Upload Resumes
-</h2>
+<div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 mb-8">
+  <h2 className="text-4xl font-bold mb-6">
+    Upload Resumes
+  </h2>
 
-{successMessage && (
-  <div className="mb-4 p-3 bg-green-100 border border-green-300 text-green-700 rounded-xl">
-    ✅ {successMessage}
-  </div>
-)}
-
-     <input
-  type="file"
-  multiple
-  onChange={(e) => setFiles([...e.target.files])}
-  className="
-  w-full
-  border-2
-  border-dashed
-  border-slate-300
-  rounded-2xl
-  p-8
-  bg-slate-50
-  cursor-pointer
-  "
-/>
-{files.length > 0 && (
-  <div className="mt-4 space-y-2">
-    {files.map((file, index) => (
-      <div
-        key={index}
-        className="bg-slate-100 p-2 rounded-lg"
-      >
-        📄 {file.name}
-      </div>
-    ))}
-  </div>
-)}
-<button
-  onClick={handleUpload}
-  className="
-  mt-4
-  bg-blue-600
-  hover:bg-blue-700
-  text-white
-  px-6
-  py-3
-  rounded-xl
-  font-medium
-  "
->
- {files.length > 1
-  ? `Upload ${files.length} Resumes`
-  : "Upload Resume"}
-</button>
-    </div>
+  <ResumeUpload
+    files={files}
+    setFiles={setFiles}
+    handleUpload={handleUpload}
+    successMessage={successMessage}
+  />
+</div>
 
     {/* Job Description */}
     <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 mb-8">

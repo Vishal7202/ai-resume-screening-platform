@@ -1,7 +1,12 @@
 import { useState } from "react";
 import API from "../services/api";
 
-const ResumeUpload = ({ setUploadedResumes }) => {
+const ResumeUpload = ({
+  files,
+  setFiles,
+  handleUpload,
+  successMessage,
+}) => {
 
   const [files, setFiles] = useState([]);
   const [fileType, setFileType] = useState("all");
