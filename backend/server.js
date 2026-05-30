@@ -34,6 +34,7 @@ const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
+const pool = require("./config/db");
 
 const app = express();
 app.use(cors());
