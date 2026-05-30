@@ -30,6 +30,30 @@ function extractSkills(text) {
   );
 }
 
+function extractEducation(text) {
+
+  const educationKeywords = [
+    "b.tech",
+    "bachelor",
+    "computer science",
+    "cse",
+    "information technology",
+    "bca",
+    "mca",
+    "b.sc",
+    "m.tech",
+    "engineering",
+    "software engineering"
+  ];
+
+  const lowerText = text.toLowerCase();
+
+  return educationKeywords.filter((edu) =>
+    lowerText.includes(edu)
+  );
+
+}
+
 
 const express = require("express");
 const cors = require("cors");
@@ -333,29 +357,54 @@ app.post("/match-score", (req, res) => {
   const resumeSkills = extractSkills(resumeText);
   const jdSkills = extractSkills(jdText);
 
+  const resumeEducation =
+  extractEducation(resumeText);
+
+const jdEducation =
+  extractEducation(jdText);
+
   const matchedSkills = resumeSkills.filter(skill =>
     jdSkills.includes(skill)
+  );
+
+  const matchedEducation =
+  resumeEducation.filter((edu) =>
+    jdEducation.includes(edu)
   );
 
   const missingSkills = jdSkills.filter(skill =>
     !resumeSkills.includes(skill)
   );
 
-  const score =
-    jdSkills.length === 0
-      ? 0
-      : Math.round(
-          (matchedSkills.length / jdSkills.length) * 100
-        );
+  const skillScore =
+  jdSkills.length === 0
+    ? 0
+    : (
+        matchedSkills.length /
+        jdSkills.length
+      ) * 80;
 
-  res.json({
-    success: true,
-    score,
-    matchedSkills,
-    missingSkills,
-    resumeSkills,
-    jdSkills,
-  });
+const educationScore =
+  matchedEducation.length > 0
+    ? 20
+    : 0;
+
+const score = Math.min(
+  100,
+  Math.round(
+    skillScore + educationScore
+  )
+);
+
+ res.json({
+  success: true,
+  score,
+  matchedSkills,
+  matchedEducation,
+  missingSkills,
+  resumeSkills,
+  jdSkills,
+});
 });
 
 app.post("/rank-candidates", async (req, res) => {
