@@ -403,7 +403,7 @@ const jdKeywords =
 
   const resumeExperience =
   extractExperience(resumeText);
-  
+
 const jdExperience =
   extractExperience(jdText);
 
@@ -503,6 +503,12 @@ const matchedEducation =
 const jdKeywords =
   getKeywords(jdText);
 
+  const resumeExperience =
+  extractExperience(candidate.resumeText);
+
+const jdExperience =
+  extractExperience(jdText);
+
 const matchedKeywords =
   resumeKeywords.filter((word) =>
     jdKeywords.includes(word)
@@ -529,12 +535,20 @@ const educationScore =
         jdKeywords.length
       ) * 10;
 
+const experienceScore =
+  resumeExperience >= jdExperience &&
+  jdExperience > 0
+    ? 10
+    : 0;
+
+
 const score = Math.min(
   100,
   Math.round(
     skillScore +
     educationScore +
-    keywordScore
+    keywordScore +
+    experienceScore
   )
 );
 
