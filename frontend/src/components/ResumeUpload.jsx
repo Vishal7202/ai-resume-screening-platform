@@ -1,5 +1,4 @@
 import { useState } from "react";
-import API from "../services/api";
 
 const ResumeUpload = ({
   files,
@@ -7,34 +6,7 @@ const ResumeUpload = ({
   handleUpload,
   successMessage,
 }) => {
-
-  const [files, setFiles] = useState([]);
   const [fileType, setFileType] = useState("all");
-
-  const handleUpload = async () => {
-
-    const formData = new FormData();
-
-    files.forEach(file => {
-      formData.append("resumes", file);
-    });
-
-    try {
-
-      const res = await API.post(
-        "/upload",
-        formData
-      );
-
-      setUploadedResumes(res.data);
-
-      alert("Upload Success");
-
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
  return (
   <div className="bg-white p-6 rounded-xl shadow-md border">
      <select
