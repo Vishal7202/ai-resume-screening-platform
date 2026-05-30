@@ -36,7 +36,6 @@ const multer = require("multer");
 const path = require("path");
 
 const app = express();
-//const uploadedFingerprints = new Set();
 app.use(cors());
 app.use(express.json());
 app.use(
@@ -113,19 +112,6 @@ const fingerprint = crypto
 
   console.log("FILE:", file.originalname);
 console.log("FINGERPRINT:", fingerprint);
-console.log(
-  "ALREADY EXISTS:",
-  uploadedFingerprints.has(fingerprint)
-);
-/*****
-  if (uploadedFingerprints.has(fingerprint)) {
-
-  continue;
-
-}
-
-uploadedFingerprints.add(fingerprint);
-*****/
      candidates.push({
   name: file.originalname,
   resumeText: extractedText,
