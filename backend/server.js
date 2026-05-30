@@ -122,7 +122,7 @@ app.get("/db-test", async (req, res) => {
   }
 });
 
-app.post("/upload", upload.array("resumes", 50), async (req, res) => {
+app.post("/upload", upload.any(), async (req, res) => {
   try {
 
     const candidates = [];
