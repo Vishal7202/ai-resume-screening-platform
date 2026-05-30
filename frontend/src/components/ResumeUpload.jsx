@@ -47,13 +47,36 @@ const ResumeUpload = ({
   accept=".pdf,.doc,.docx,.txt"
   onChange={(e) => {
     const newFiles = Array.from(
-      e.target.files
+  e.target.files
+);
+
+setFiles((prev) => {
+
+  const existingNames =
+    prev.map((file) => file.name);
+
+  const uniqueFiles =
+    newFiles.filter(
+      (file) =>
+        !existingNames.includes(
+          file.name
+        )
     );
 
-    setFiles((prev) => [
-      ...prev,
-      ...newFiles,
-    ]);
+  if (
+    uniqueFiles.length !==
+    newFiles.length
+  ) {
+    alert(
+      "Some resumes were already uploaded"
+    );
+  }
+
+  return [
+    ...prev,
+    ...uniqueFiles,
+  ];
+});
   }}
 />
 <button
