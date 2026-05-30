@@ -55,6 +55,59 @@ setTimeout(() => {
 
 }
 };
+
+const downloadCSV = () => {
+
+  if (results.length === 0) {
+    alert("No candidate data available");
+    return;
+  }
+
+  const headers = [
+    "Rank",
+    "Candidate",
+    "Score",
+    "Status",
+  ];
+
+  const rows = results.map((candidate) => [
+    candidate.rank,
+    candidate.name,
+    candidate.score,
+    candidate.score >= 70
+      ? "Qualified"
+      : "Rejected",
+  ]);
+
+  const csvContent = [
+    headers,
+    ...rows,
+  ]
+    .map((row) => row.join(","))
+    .join("\n");
+
+  const blob = new Blob(
+    [csvContent],
+    {
+      type: "text/csv",
+    }
+  );
+
+  const url =
+    window.URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
+
+  link.href = url;
+
+  link.download =
+    "candidate-rankings.csv";
+
+  link.click();
+
+  window.URL.revokeObjectURL(url);
+};
 const handleAnalyze = async () => {
   if (!jd.trim()) {
   alert("Please enter Job Description");
@@ -191,6 +244,20 @@ focus:ring-slate-300
         <h2 className="text-3xl font-bold">
           Candidate Rankings
         </h2>
+        <button
+  onClick={downloadCSV}
+  className="
+  bg-green-600
+  hover:bg-green-700
+  text-white
+  px-5
+  py-3
+  rounded-xl
+  font-medium
+  "
+>
+  Download CSV
+</button>
 
         <input
           type="text"
