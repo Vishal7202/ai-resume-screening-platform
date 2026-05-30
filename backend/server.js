@@ -179,7 +179,23 @@ console.log("FINGERPRINT:", fingerprint);
   fileUrl:
     `https://ai-resume-screening-backend-g2eh.onrender.com/uploads/${file.filename}`,
 });
+await pool.query(
+  `
+  INSERT INTO candidates
+  (
+    candidate_name,
+    resume_name
+  )
+  VALUES ($1,$2)
+  `,
+  [
+    file.originalname,
+    file.originalname
+  ]
+);
     }
+
+    
 
     res.json({
       success: true,
