@@ -77,10 +77,15 @@ app.post("/upload", upload.array("resumes", 50), async (req, res) => {
           file.path
         );
 
-        const pdfData =
-          await pdfParse(dataBuffer);
+        console.log(typeof pdfParse);
 
-        extractedText = pdfData.text;
+const parser = new pdfParse.PDFParse({
+  data: dataBuffer
+});
+
+const pdfText = await parser.getText();
+
+        extractedText = pdftext;
 
       }
 
