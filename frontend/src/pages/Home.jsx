@@ -21,7 +21,7 @@ const handleUpload = async () => {
   const formData = new FormData();
 
 files.forEach((file) => {
-  formData.append("resume", files[0]);;
+  formData.append("resumes", file);
 });
 
   try {
@@ -33,12 +33,9 @@ files.forEach((file) => {
 
     console.log(response.data);
 
-    setUploadedResumes([
-  {
-    name: response.data.fileName,
-    resumeText: "react javascript html css node.js mongodb",
-  },
-]);
+   setUploadedResumes(
+  response.data.candidates
+);
 
   } catch (error) {
 
