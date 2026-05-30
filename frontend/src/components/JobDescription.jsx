@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 const JobDescription = ({
   jdText,
@@ -8,22 +9,44 @@ const JobDescription = ({
   const [fileName, setFileName] =
     useState("");
 
-  const handleFileUpload = (e) => {
+  const handleFileUpload = async (e) => {
 
-    const file = e.target.files[0];
+  const file = e.target.files[0];
 
-    if (!file) return;
+  if (!file) return;
 
-    setFileName(file.name);
+  setFileName(file.name);
 
-    const reader = new FileReader();
+  const formData = new FormData();
 
-    reader.onload = (event) => {
-      setJdText(event.target.result);
-    };
+  formData.append(
+    "jdFile",
+    file
+  );
 
-    reader.readAsText(file);
-  };
+  try {
+
+    const response =
+      await axios.post(
+        "https://ai-resume-screening-backend-g2eh.onrender.com/upload-jd",
+        formData
+      );
+
+    setJdText(
+      response.data.jdText
+    );
+
+  } catch (error) {
+
+    console.log(error);
+
+    alert(
+      "JD Upload Failed"
+    );
+
+  }
+
+};
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8">
@@ -82,7 +105,7 @@ const JobDescription = ({
 
         <input
           type="file"
-          accept=".txt"
+         accept=".pdf,.docx,.txt"
           onChange={handleFileUpload}
           className="hidden"
         />

@@ -150,6 +150,72 @@ app.post("/jd", (req, res) => {
   });
 });
 
+app.post(
+  "/upload-jd",
+  upload.single("jdFile"),
+  async (req, res) => {
+
+    try {
+
+      let jdText = "";
+
+      const ext = path.extname(
+        req.file.originalname
+      ).toLowerCase();
+
+      if (ext === ".pdf") {
+
+        const dataBuffer =
+          fs.readFileSync(req.file.path);
+
+        const parser =
+          new pdfParse.PDFParse({
+            data: dataBuffer,
+          });
+
+        const pdfText =
+          await parser.getText();
+
+        jdText = pdfText.text;
+
+      }
+
+      else if (ext === ".docx") {
+
+        const result =
+          await mammoth.extractRawText({
+            path: req.file.path,
+          });
+
+        jdText = result.value;
+
+      }
+
+      else if (ext === ".txt") {
+
+        jdText =
+          fs.readFileSync(
+            req.file.path,
+            "utf8"
+          );
+
+      }
+
+      res.json({
+        success: true,
+        jdText,
+      });
+
+    } catch (error) {
+
+      res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+
+    }
+
+});
 
 app.post("/extract-skills", (req, res) => {
   const { text } = req.body;
