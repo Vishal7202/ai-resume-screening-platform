@@ -1,3 +1,4 @@
+require("dotenv").config();
 const fs = require("fs");
 const pdfParse = require("pdf-parse");
 const mammoth = require("mammoth");
@@ -200,13 +201,33 @@ console.log("FINGERPRINT:", fingerprint);
 
 let jdText = "";
 
-app.post("/jd", (req, res) => {
-  jdText = req.body.jd;
+app.post("/jd", async (req, res) => {
+  try {
+    jdText = req.body.jd;
 
-  res.json({
-    success: true,
-    jd: jdText,
-  });
+    await pool.query(
+      `
+      INSERT INTO job_descriptions (jd_text)
+      VALUES ($1)
+      `,
+      [jdText]
+    );
+
+    res.json({
+      success: true,
+      jd: jdText,
+    });
+
+  } catch (error) {
+
+    console.error("JD SAVE ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+
+  }
 });
 
 app.post(
