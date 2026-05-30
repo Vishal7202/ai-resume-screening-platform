@@ -31,6 +31,13 @@ function extractSkills(text) {
 }
 
 function extractEducation(text) {
+  function getKeywords(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, "")
+    .split(/\s+/)
+    .filter((word) => word.length > 3);
+}
 
   const educationKeywords = [
     "b.tech",
@@ -362,6 +369,11 @@ app.post("/match-score", (req, res) => {
 
 const jdEducation =
   extractEducation(jdText);
+  const resumeKeywords =
+  getKeywords(resumeText);
+
+const jdKeywords =
+  getKeywords(jdText);
 
   const matchedSkills = resumeSkills.filter(skill =>
     jdSkills.includes(skill)
@@ -370,6 +382,11 @@ const jdEducation =
   const matchedEducation =
   resumeEducation.filter((edu) =>
     jdEducation.includes(edu)
+  );
+
+  const matchedKeywords =
+  resumeKeywords.filter((word) =>
+    jdKeywords.includes(word)
   );
 
   const missingSkills = jdSkills.filter(skill =>
@@ -388,11 +405,21 @@ const educationScore =
   matchedEducation.length > 0
     ? 20
     : 0;
+const keywordScore =
+  jdKeywords.length === 0
+    ? 0
+    : (
+        matchedKeywords.length /
+        jdKeywords.length
+      ) * 10;
+
 
 const score = Math.min(
   100,
   Math.round(
-    skillScore + educationScore
+    skillScore +
+    educationScore +
+    keywordScore
   )
 );
 
@@ -401,6 +428,7 @@ const score = Math.min(
   score,
   matchedSkills,
   matchedEducation,
+  matchedKeywords,
   missingSkills,
   resumeSkills,
   jdSkills,
