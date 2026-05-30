@@ -269,8 +269,8 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
               <th className="p-4 text-left">Matched Skills</th>
               <th className="p-4 text-left">Missing Skills</th>
               <th className="p-4 text-left">Status</th>
-              <th className="p-4 text-left">
-  Resume
+             <th className="p-4 text-left">
+  Resume Preview
 </th>
             </tr>
           </thead>
@@ -329,12 +329,28 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
   </span>
 </td>
 
-<td className="p-4">
+<td className="p-4 flex gap-2">
 
   <a
     href={candidate.fileUrl}
     target="_blank"
     rel="noreferrer"
+    className="
+    bg-purple-600
+    hover:bg-purple-700
+    text-white
+    px-3
+    py-2
+    rounded-lg
+    text-sm
+    "
+  >
+    View Resume
+  </a>
+
+  <a
+    href={candidate.fileUrl}
+    download
     className="
     bg-blue-600
     hover:bg-blue-700
