@@ -1,3 +1,4 @@
+import * as XLSX from "xlsx";
 import axios from "axios";
 import { useState } from "react";
 import ResumeUpload from "../components/ResumeUpload";
@@ -63,6 +64,44 @@ setTimeout(() => {
 };
 
 const downloadCSV = () => {
+  const downloadExcel = () => {
+
+  if (results.length === 0) {
+    alert("No candidate data available");
+    return;
+  }
+
+  const excelData = results.map((candidate) => ({
+    Rank: candidate.rank,
+    Candidate: candidate.name,
+    Score: candidate.score,
+    Status:
+      candidate.score >= 70
+        ? "Qualified"
+        : "Rejected",
+    MatchedSkills:
+      candidate.matchedSkills?.join(", "),
+    MissingSkills:
+      candidate.missingSkills?.join(", ")
+  }));
+
+  const worksheet =
+    XLSX.utils.json_to_sheet(excelData);
+
+  const workbook =
+    XLSX.utils.book_new();
+
+  XLSX.utils.book_append_sheet(
+    workbook,
+    worksheet,
+    "Candidates"
+  );
+
+  XLSX.writeFile(
+    workbook,
+    "candidate-rankings.xlsx"
+  );
+};
 
   if (results.length === 0) {
     alert("No candidate data available");
@@ -248,6 +287,20 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
   "
 >
   Download CSV
+</button>
+<button
+  onClick={downloadExcel}
+  className="
+  bg-emerald-600
+  hover:bg-emerald-700
+  text-white
+  px-5
+  py-3
+  rounded-xl
+  font-medium
+  "
+>
+  Download Excel
 </button>
 
         <input
