@@ -338,7 +338,7 @@ app.post("/match-score", (req, res) => {
   });
 });
 
-app.post("/rank-candidates", (req, res) => {
+app.post("/rank-candidates", async (req, res) => {
   const { candidates, jdText } = req.body;
 
   const rankedCandidates = candidates.map((candidate) => {
@@ -374,7 +374,28 @@ return {
   rankedCandidates.forEach((candidate, index) => {
   candidate.rank = index + 1;
 });
-
+for (const candidate of rankedCandidates) {
+  await pool.query(
+    `
+    INSERT INTO screening_results
+    (
+      candidate_name,
+      score,
+      rank,
+      matched_skills,
+      missing_skills
+    )
+    VALUES ($1,$2,$3,$4,$5)
+    `,
+    [
+      candidate.name,
+      candidate.score,
+      candidate.rank,
+      candidate.matchedSkills.join(", "),
+      candidate.missingSkills.join(", ")
+    ]
+  );
+}
   res.json({
     success: true,
     rankedCandidates,
