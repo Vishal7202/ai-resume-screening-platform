@@ -63,8 +63,7 @@ setTimeout(() => {
 }
 };
 
-const downloadCSV = () => {
-  const downloadExcel = () => {
+const downloadExcel = () => {
 
   if (results.length === 0) {
     alert("No candidate data available");
@@ -102,7 +101,7 @@ const downloadCSV = () => {
     "candidate-rankings.xlsx"
   );
 };
-
+const downloadCSV = () => {
   if (results.length === 0) {
     alert("No candidate data available");
     return;
