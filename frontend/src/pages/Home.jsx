@@ -15,6 +15,7 @@ const filteredCandidates = results.filter((candidate) =>
   candidate.name.toLowerCase().includes(search.toLowerCase())
 );
 const handleUpload = async () => {
+  console.log("UPLOAD BUTTON CLICKED");
   if (files.length === 0) {
   alert("Please select a resume");
   return;

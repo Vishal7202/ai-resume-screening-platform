@@ -8,9 +8,9 @@ const ResumeUpload = ({
 }) => {
   const [fileType, setFileType] = useState("all");
  return (
-  <div className="bg-white p-6 rounded-xl shadow-md border">
+  <div className="w-full bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
      <select
-  className="w-full border rounded-lg p-3 mb-4"
+ className="w-full border border-slate-300 rounded-xl p-3 mb-4 bg-white"
   value={fileType}
   onChange={(e) =>
     setFileType(e.target.value)
@@ -40,7 +40,18 @@ const ResumeUpload = ({
   }}
 />
 <button
-  className="w-full border-2 border-dashed border-gray-300 rounded-xl p-8 mb-4 hover:bg-gray-50"
+  className="
+w-full
+border-2
+border-dashed
+border-slate-300
+rounded-2xl
+p-8
+mb-4
+bg-slate-50
+hover:bg-slate-100
+transition
+"
   onClick={() =>
     document
       .getElementById("resume-upload")
