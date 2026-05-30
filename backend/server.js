@@ -122,8 +122,10 @@ app.get("/db-test", async (req, res) => {
   }
 });
 
-app.post("/upload", upload.any(), async (req, res) => {
+app.post("/upload", upload.array("resumes", 50), async (req, res) => {
   try {
+    console.log("FILES:", req.files);
+console.log("BODY:", req.body);
 
     const candidates = [];
 
