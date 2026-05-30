@@ -36,7 +36,7 @@ const multer = require("multer");
 const path = require("path");
 
 const app = express();
-
+const uploadedFingerprints = new Set();
 app.use(cors());
 app.use(express.json());
 
@@ -106,6 +106,14 @@ const fingerprint = crypto
   .createHash("sha256")
   .update(normalizedText)
   .digest("hex");
+
+  if (uploadedFingerprints.has(fingerprint)) {
+
+  continue;
+
+}
+
+uploadedFingerprints.add(fingerprint);
 
      candidates.push({
   name: file.originalname,
