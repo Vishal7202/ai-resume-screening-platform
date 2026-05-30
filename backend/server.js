@@ -29,9 +29,7 @@ function extractSkills(text) {
     lowerText.includes(skill)
   );
 }
-
-function extractEducation(text) {
-  function getKeywords(text) {
+function getKeywords(text) {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9 ]/g, "")
@@ -39,6 +37,8 @@ function extractEducation(text) {
     .filter((word) => word.length > 3);
 }
 
+
+function extractEducation(text) {
   const educationKeywords = [
     "b.tech",
     "bachelor",
@@ -58,8 +58,34 @@ function extractEducation(text) {
   return educationKeywords.filter((edu) =>
     lowerText.includes(edu)
   );
-
 }
+
+function extractExperience(text) {
+
+  const lowerText = text.toLowerCase();
+
+  const matches =
+    lowerText.match(/(\d+)\s*(year|years)/g);
+
+  if (!matches) {
+    return 0;
+  }
+
+  let maxYears = 0;
+
+  matches.forEach((item) => {
+
+    const years = parseInt(item);
+
+    if (years > maxYears) {
+      maxYears = years;
+    }
+
+  });
+
+  return maxYears;
+}
+
 
 
 const express = require("express");
@@ -375,6 +401,12 @@ const jdEducation =
 const jdKeywords =
   getKeywords(jdText);
 
+  const resumeExperience =
+  extractExperience(resumeText);
+  
+const jdExperience =
+  extractExperience(jdText);
+
   const matchedSkills = resumeSkills.filter(skill =>
     jdSkills.includes(skill)
   );
@@ -405,6 +437,8 @@ const educationScore =
   matchedEducation.length > 0
     ? 20
     : 0;
+
+
 const keywordScore =
   jdKeywords.length === 0
     ? 0
@@ -413,13 +447,19 @@ const keywordScore =
         jdKeywords.length
       ) * 10;
 
+const experienceScore =
+  resumeExperience >= jdExperience &&
+  jdExperience > 0
+    ? 10
+    : 0;
 
 const score = Math.min(
   100,
   Math.round(
     skillScore +
     educationScore +
-    keywordScore
+    keywordScore +
+    experienceScore
   )
 );
 
@@ -446,12 +486,57 @@ app.post("/rank-candidates", async (req, res) => {
       jdSkills.includes(skill)
     );
 
-    const score =
-      jdSkills.length === 0
-        ? 0
-        : Math.round(
-            (matchedSkills.length / jdSkills.length) * 100
-          );
+    const resumeEducation =
+  extractEducation(candidate.resumeText);
+
+const jdEducation =
+  extractEducation(jdText);
+
+const matchedEducation =
+  resumeEducation.filter((edu) =>
+    jdEducation.includes(edu)
+  );
+
+  const resumeKeywords =
+  getKeywords(candidate.resumeText);
+
+const jdKeywords =
+  getKeywords(jdText);
+
+const matchedKeywords =
+  resumeKeywords.filter((word) =>
+    jdKeywords.includes(word)
+  );
+
+   const skillScore =
+  jdSkills.length === 0
+    ? 0
+    : (
+        matchedSkills.length /
+        jdSkills.length
+      ) * 80;
+
+const educationScore =
+  matchedEducation.length > 0
+    ? 20
+    : 0;
+
+    const keywordScore =
+  jdKeywords.length === 0
+    ? 0
+    : (
+        matchedKeywords.length /
+        jdKeywords.length
+      ) * 10;
+
+const score = Math.min(
+  100,
+  Math.round(
+    skillScore +
+    educationScore +
+    keywordScore
+  )
+);
 
     const missingSkills = jdSkills.filter(
   (skill) => !resumeSkills.includes(skill)
@@ -461,6 +546,11 @@ return {
   name: candidate.name,
   score,
   matchedSkills,
+  matchedEducation,
+  matchedKeywords,
+  resumeExperience,
+  jdExperience,
+  experienceScore,
   missingSkills,
   fileUrl: candidate.fileUrl,
 };
