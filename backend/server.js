@@ -85,7 +85,7 @@ const parser = new pdfParse.PDFParse({
 
 const pdfText = await parser.getText();
 
-        extractedText = pdftext;
+        extractedText = pdfText;
 
       }
 
