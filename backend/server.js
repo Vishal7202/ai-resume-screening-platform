@@ -37,6 +37,45 @@ const path = require("path");
 const pool = require("./config/db");
 
 const app = express();
+
+(async () => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS candidates (
+        id SERIAL PRIMARY KEY,
+        candidate_name VARCHAR(255),
+        resume_name VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS job_descriptions (
+        id SERIAL PRIMARY KEY,
+        jd_text TEXT,
+        uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS screening_results (
+        id SERIAL PRIMARY KEY,
+        candidate_name VARCHAR(255),
+        score INTEGER,
+        rank INTEGER,
+        matched_skills TEXT,
+        missing_skills TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    console.log("PostgreSQL tables ready");
+  } catch (error) {
+    console.error("DB TABLE ERROR:", error);
+  }
+})();
+
+
 app.use(cors());
 app.use(express.json());
 app.use(
