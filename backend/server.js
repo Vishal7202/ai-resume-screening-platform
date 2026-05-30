@@ -1,3 +1,6 @@
+const fs = require("fs");
+const pdfParse = require("pdf-parse");
+const mammoth = require("mammoth");
 const skillsList = [
   "react",
   "node.js",
@@ -55,15 +58,63 @@ app.get("/test", (req, res) => {
   res.send("Test Working");
 });
 
-app.post("/upload", upload.single("resume"), (req, res) => {
+app.post("/upload", upload.array("resumes", 50), async (req, res) => {
+  try {
 
+    const candidates = [];
 
+    for (const file of req.files) {
 
-  res.json({
-    success: true,
-    fileName: req.file.originalname,
-    path: req.file.path,
-  });
+      let extractedText = "";
+
+      const ext = path.extname(
+        file.originalname
+      ).toLowerCase();
+
+      if (ext === ".pdf") {
+
+        const dataBuffer = fs.readFileSync(
+          file.path
+        );
+
+        const pdfData =
+          await pdfParse(dataBuffer);
+
+        extractedText = pdfData.text;
+
+      }
+
+      else if (ext === ".docx") {
+
+        const result =
+          await mammoth.extractRawText({
+            path: file.path,
+          });
+
+        extractedText = result.value;
+      }
+
+      candidates.push({
+        name: file.originalname,
+        resumeText: extractedText,
+      });
+    }
+
+    res.json({
+      success: true,
+      candidates,
+    });
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Upload Failed",
+    });
+
+  }
 });
 
 let jdText = "";

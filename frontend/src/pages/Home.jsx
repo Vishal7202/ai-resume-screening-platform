@@ -20,12 +20,14 @@ const handleUpload = async () => {
 
   const formData = new FormData();
 
-  formData.append("resume", files[0]);
+files.forEach((file) => {
+  formData.append("resume", files[0]);;
+});
 
   try {
 
     const response = await axios.post(
-      "http://localhost:5000/upload",
+      "https://ai-resume-screening-backend-g2eh.onrender.com/upload",
       formData
     );
 
@@ -37,13 +39,14 @@ const handleUpload = async () => {
     resumeText: "react javascript html css node.js mongodb",
   },
 ]);
-    alert("Resume Uploaded Successfully");
 
   } catch (error) {
 
-    console.log(error);
+  console.log("UPLOAD ERROR");
+  console.log(error);
+  console.log(error.response?.data);
 
-  }
+}
 };
 const handleAnalyze = async () => {
   if (!jd.trim()) {
@@ -60,7 +63,7 @@ if (uploadedResumes.length === 0) {
     setLoading(true);
 
     const response = await axios.post(
-      "http://localhost:5000/rank-candidates",
+      "https://ai-resume-screening-backend-g2eh.onrender.com/rank-candidates",
       {
         jdText: jd,
         candidates: uploadedResumes,
