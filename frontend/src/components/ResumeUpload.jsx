@@ -53,23 +53,25 @@ const ResumeUpload = ({
 setFiles((prev) => {
 
   const existingNames =
-    prev.map((file) => file.name);
+  prev.map((file) =>
+    file.name.toLowerCase()
+  );
 
   const uniqueFiles =
     newFiles.filter(
       (file) =>
-        !existingNames.includes(
-          file.name
-        )
+       !existingNames.includes(
+  file.name.toLowerCase()
+)
     );
 
   if (
     uniqueFiles.length !==
     newFiles.length
   ) {
-    alert(
-      "Some resumes were already uploaded"
-    );
+   alert(
+  `${newFiles[0].name} already exists`
+);
   }
 
   return [
