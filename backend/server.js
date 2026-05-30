@@ -105,16 +105,17 @@ app.post("/upload", upload.array("resumes", 50), async (req, res) => {
       candidates,
     });
 
-  } catch (error) {
+  }catch (error) {
 
-    console.log(error);
+  console.error("UPLOAD ERROR:");
+  console.error(error);
 
-    res.status(500).json({
-      success: false,
-      message: "Upload Failed",
-    });
+  res.status(500).json({
+    success: false,
+    message: error.message,
+  });
 
-  }
+}
 });
 
 let jdText = "";
