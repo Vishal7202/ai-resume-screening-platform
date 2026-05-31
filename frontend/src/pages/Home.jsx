@@ -192,32 +192,110 @@ const topScore =
 const matchedCandidates =
   results.filter((c) => c.score >= 70).length;
 
-return ( 
-<div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+return (
+<div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-sky-50">
 
- {/* Header */}
-<div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950">
+  {/* Header */}
+  <div className="relative overflow-hidden bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 border-b border-slate-200">
+
+    {/* Background Glow */}
+    <div className="absolute top-0 left-0 w-96 h-96 bg-sky-300/30 rounded-full blur-3xl"></div>
+    <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl"></div>
+
+    <div className="relative max-w-7xl mx-auto px-6 py-16">
+
+      <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/70 backdrop-blur-md border border-white/50 text-slate-700 text-sm font-medium shadow-sm mb-6">
+        🚀 AI Powered ATS Resume Screening
+      </div>
+
+      <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-slate-900">
+        AI Resume Screening
+        <span className="block bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
+          & Candidate Ranking
+        </span>
+      </h1>
+
+      <p className="mt-6 text-slate-600 max-w-3xl text-lg leading-relaxed">
+        Upload resumes, compare candidates with job descriptions,
+        calculate ATS scores and rank applicants automatically using
+        intelligent resume screening.
+      </p>
+
+      {/* Feature Chips */}
+      <div className="flex flex-wrap gap-3 mt-8">
+
+        <span className="px-4 py-2 bg-white/70 backdrop-blur-md rounded-full text-sm font-medium text-slate-700 shadow-sm">
+          📄 Resume Parsing
+        </span>
+
+        <span className="px-4 py-2 bg-white/70 backdrop-blur-md rounded-full text-sm font-medium text-slate-700 shadow-sm">
+          🎯 ATS Scoring
+        </span>
+
+        <span className="px-4 py-2 bg-white/70 backdrop-blur-md rounded-full text-sm font-medium text-slate-700 shadow-sm">
+          🏆 Candidate Ranking
+        </span>
+
+        <span className="px-4 py-2 bg-white/70 backdrop-blur-md rounded-full text-sm font-medium text-slate-700 shadow-sm">
+          ⚡ PostgreSQL Powered
+        </span>
+
+      </div>
+
+    </div>
+  </div>
+
   <div className="max-w-7xl mx-auto px-6 py-10">
 
-   <h1 className="text-6xl font-extrabold text-white">
-      AI Resume Screening Platform
-    </h1>
+{/* Upload Resume */}
+<div
+  className="
+  bg-white/70
+  backdrop-blur-xl
+  rounded-[32px]
+  border
+  border-white/50
+  shadow-xl
+  p-8
+  mb-8
+  hover:shadow-2xl
+  transition-all
+  duration-300
+"
+>
 
-    <p className="mt-5 text-slate-300 max-w-3xl text-lg">
-      Upload resumes, compare candidates with job descriptions,
-      calculate ATS scores and rank applicants automatically.
-    </p>
+  <div className="flex items-center gap-4 mb-6">
+
+    <div
+      className="
+      w-14
+      h-14
+      rounded-2xl
+      bg-gradient-to-br
+      from-sky-500
+      to-blue-500
+      flex
+      items-center
+      justify-center
+      text-white
+      text-2xl
+      shadow-lg
+      "
+    >
+      📄
+    </div>
+
+    <div>
+      <h2 className="text-3xl font-bold text-slate-900">
+        Upload Resumes
+      </h2>
+
+      <p className="text-slate-500 mt-1">
+        Upload one or multiple resumes for ATS analysis
+      </p>
+    </div>
 
   </div>
-</div>
-
-  <div className="max-w-7xl mx-auto px-6 py-10">
-
-    {/* Upload Resume */}
-<div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl p-8 mb-8 transition-all duration-300">
-  <h2 className="text-4xl font-bold mb-6">
-    Upload Resumes
-  </h2>
 
   <ResumeUpload
     files={files}
@@ -225,60 +303,284 @@ return (
     handleUpload={handleUpload}
     successMessage={successMessage}
   />
+
 </div>
 
-   {/* Job Description */}
 
-<div className="mb-8">
+{/* Job Description */}
+
+<div
+  className="
+  bg-white/70
+  backdrop-blur-xl
+  rounded-[32px]
+  border
+  border-white/50
+  shadow-xl
+  p-8
+  mb-8
+  hover:shadow-2xl
+  transition-all
+  duration-300
+"
+>
+
+  <div className="flex items-center gap-4 mb-6">
+
+    <div
+      className="
+      w-14
+      h-14
+      rounded-2xl
+      bg-gradient-to-br
+      from-indigo-500
+      to-sky-500
+      flex
+      items-center
+      justify-center
+      text-white
+      text-2xl
+      shadow-lg
+      "
+    >
+      📋
+    </div>
+
+    <div>
+      <h2 className="text-3xl font-bold text-slate-900">
+        Job Description
+      </h2>
+
+      <p className="text-slate-500 mt-1">
+        Enter or upload the job requirements for candidate screening
+      </p>
+    </div>
+
+  </div>
+
   <JobDescription
     jdText={jd}
     setJdText={setJd}
   />
+
 </div>
 
     {/* Analyze Button */}
-    <div className="mb-10">
-      <button
-  onClick={handleAnalyze}
-  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 hover:shadow-2xl text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300"
->
-  {loading ? "Analyzing..." : "Analyze Candidates"}
-</button>
-    </div>
+<div className="flex flex-col items-center mb-12">
+
+  <button
+    onClick={handleAnalyze}
+    className="
+    bg-gradient-to-r
+    from-sky-500
+    to-blue-500
+    hover:scale-105
+    hover:shadow-2xl
+    hover:shadow-sky-200
+    text-white
+    px-10
+    py-4
+    rounded-2xl
+    font-bold
+    text-lg
+    transition-all
+    duration-300
+    shadow-lg
+    "
+  >
+    {loading
+      ? "🔄 Analyzing..."
+      : "🎯 Analyze Candidates"}
+  </button>
+
+  <p className="mt-4 text-slate-500 text-sm">
+    AI Powered ATS Scoring • Resume Ranking • Skill Matching
+  </p>
+
+</div>
 
     {/* Dashboard Cards */}
-    <div className="grid md:grid-cols-3 gap-6 mb-10">
-      <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-6 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
-        <p className="text-gray-500">Total Resumes</p>
-        <h3 className="text-4xl font-bold mt-2">{totalResumes}</h3>
+<div className="grid md:grid-cols-3 gap-6 mb-12">
+
+  {/* Total Resumes */}
+  <div
+    className="
+    bg-white/70
+    backdrop-blur-xl
+    rounded-[28px]
+    border
+    border-white/50
+    shadow-xl
+    p-6
+    hover:-translate-y-2
+    hover:shadow-2xl
+    transition-all
+    duration-300
+    "
+  >
+
+    <div className="flex items-center justify-between">
+
+      <div>
+
+        <p className="text-slate-500 font-medium">
+          Total Resumes
+        </p>
+
+        <h3 className="text-5xl font-bold text-slate-900 mt-3">
+          {totalResumes}
+        </h3>
+
       </div>
 
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <p className="text-gray-500">Top Score</p>
-        <h3 className="text-4xl font-bold text-green-600 mt-2">
-          {topScore}%
-        </h3>
+      <div
+        className="
+        w-16
+        h-16
+        rounded-2xl
+        bg-sky-100
+        flex
+        items-center
+        justify-center
+        text-3xl
+        "
+      >
+        📄
       </div>
 
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <p className="text-gray-500">Matched Candidates</p>
-        <h3 className="text-4xl font-bold text-blue-600 mt-2">
-          {matchedCandidates}
-        </h3>
-      </div>
     </div>
 
+  </div>
+
+  {/* Top Score */}
+  <div
+    className="
+    bg-white/70
+    backdrop-blur-xl
+    rounded-[28px]
+    border
+    border-white/50
+    shadow-xl
+    p-6
+    hover:-translate-y-2
+    hover:shadow-2xl
+    transition-all
+    duration-300
+    "
+  >
+
+    <div className="flex items-center justify-between">
+
+      <div>
+
+        <p className="text-slate-500 font-medium">
+          Top Score
+        </p>
+
+        <h3 className="text-5xl font-bold text-emerald-600 mt-3">
+          {topScore}%
+        </h3>
+
+      </div>
+
+      <div
+        className="
+        w-16
+        h-16
+        rounded-2xl
+        bg-emerald-100
+        flex
+        items-center
+        justify-center
+        text-3xl
+        "
+      >
+        🏆
+      </div>
+
+    </div>
+
+  </div>
+
+  {/* Matched Candidates */}
+  <div
+    className="
+    bg-white/70
+    backdrop-blur-xl
+    rounded-[28px]
+    border
+    border-white/50
+    shadow-xl
+    p-6
+    hover:-translate-y-2
+    hover:shadow-2xl
+    transition-all
+    duration-300
+    "
+  >
+
+    <div className="flex items-center justify-between">
+
+      <div>
+
+        <p className="text-slate-500 font-medium">
+          Matched Candidates
+        </p>
+
+        <h3 className="text-5xl font-bold text-sky-600 mt-3">
+          {matchedCandidates}
+        </h3>
+
+      </div>
+
+      <div
+        className="
+        w-16
+        h-16
+        rounded-2xl
+        bg-sky-100
+        flex
+        items-center
+        justify-center
+        text-3xl
+        "
+      >
+        🎯
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
     {/* Candidate Rankings */}
-    <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-6">
+    <div
+  className="
+  bg-white/70
+  backdrop-blur-xl
+  rounded-[32px]
+  border
+  border-white/50
+  shadow-xl
+  p-8
+  hover:shadow-2xl
+  transition-all
+  duration-300
+"
+>
       <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
-        <h2 className="text-3xl font-bold">
-          Candidate Rankings
-        </h2>
+       <h2 className="text-3xl font-bold text-slate-900">
+  🏆 Candidate Rankings
+</h2>
         <button
   onClick={downloadCSV}
   className="
-  bg-green-600
-  hover:bg-green-700
+  bg-slate-800
+hover:bg-slate-900
+hover:scale-105
+transition-all
+duration-300
+shadow-lg
   text-white
   px-5
   py-3
@@ -291,8 +593,12 @@ return (
 <button
   onClick={downloadExcel}
   className="
-  bg-emerald-600
-  hover:bg-emerald-700
+  bbg-sky-600
+hover:bg-sky-700
+hover:scale-105
+transition-all
+duration-300
+shadow-lg
   text-white
   px-5
   py-3
@@ -308,14 +614,27 @@ return (
           placeholder="🔍 Search Candidate..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border border-slate-300 rounded-2xl px-5 py-3 md:w-80 focus:ring-4 focus:ring-blue-200 outline-none"
+          className="
+border
+border-slate-200
+bg-white
+shadow-md
+rounded-2xl
+px-5
+py-3
+md:w-80
+focus:ring-4
+focus:ring-sky-200
+outline-none
+transition-all
+"
         />
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="bg-gradient-to-r from-slate-800 to-slate-900 text-white">
+            <tr className="bg-sky-50 text-slate-700 border-b">
               <th className="p-4 text-left">Rank</th>
               <th className="p-4 text-left">Candidate</th>
               <th className="p-4 text-left">Score</th>
@@ -333,7 +652,12 @@ return (
     filteredCandidates.map((candidate, index) => (
       <tr
         key={index}
-        className="border-b hover:bg-blue-50 transition-all duration-200"
+        className="
+border-b
+hover:bg-sky-50
+transition-all
+duration-200
+"
       >
         <td className="p-4 font-bold">
   #{candidate.rank}
@@ -389,7 +713,7 @@ return (
     target="_blank"
     rel="noreferrer"
     className="
-   bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-105 transition-all duration-300
+  bg-gradient-to-r from-sky-500 to-blue-500 hover:scale-105 transition-all duration-300
     text-white
     px-3
     py-2
@@ -404,7 +728,7 @@ return (
     href={candidate.fileUrl}
     download
     className="
-   bg-gradient-to-r from-blue-600 to-cyan-500 hover:scale-105 transition-all duration-300
+   bg-gradient-to-r from-indigo-500 to-blue-500 hover:scale-105 transition-all duration-300
     text-white
     px-3
     py-2
@@ -424,7 +748,21 @@ return (
         colSpan="7"
         className="text-center p-8 text-gray-500"
       >
-        No candidates analyzed yet
+        <div className="py-12">
+
+  <div className="text-5xl mb-3">
+    📊
+  </div>
+
+  <p className="font-semibold text-lg text-slate-700">
+    No Candidate Data
+  </p>
+
+  <p className="text-slate-500 mt-2">
+    Upload resumes and click Analyze Candidates
+  </p>
+
+</div>
       </td>
     </tr>
   )}
