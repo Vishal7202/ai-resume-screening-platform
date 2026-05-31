@@ -13,7 +13,7 @@ AI Resume Screening Platform is a full-stack web application that automates the 
 
 
 The platform helps recruiters and hiring teams quickly identify the most relevant candidates, reduce manual screening effort, and streamline the hiring process.
-=======
+
 
 ## Live Demo
 
@@ -161,7 +161,6 @@ Stores ATS scores, ranking results, matched skills, and missing skills.
 ### Workflow Diagram
 
 ![Workflow Diagram](./screenshots/workflow.png)
-=======
 
 # Scoring Approach
 
@@ -292,9 +291,6 @@ Maximum = 100
 ---
 
 # API Endpoints
-=======
-# Database
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 PostgreSQL is used for storing:
 
@@ -392,10 +388,7 @@ POST /match-score
 ```http
 POST /rank-candidates
 ```
- HEAD
 ### Database Test
-=======
-## Database Test
 
 
 ```http
