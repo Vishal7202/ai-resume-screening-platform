@@ -363,8 +363,6 @@ POST /upload
 POST /upload-jd
 ```
 
-### Save Job Description
-=======
 ## Save Job Description
 
 ```http
