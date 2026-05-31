@@ -707,8 +707,8 @@ transition-all
               <th className="p-4 text-left">Matched Skills</th>
               <th className="p-4 text-left">Missing Skills</th>
               <th className="p-4 text-left">Status</th>
-             <th className="p-4 text-left">
-  Resume Preview
+            <th className="p-4 text-center">
+ Resume Preview
 </th>
             </tr>
           </thead>
@@ -772,38 +772,56 @@ duration-200
   </span>
 </td>
 
-<td className="p-4 flex gap-2">
+<td className="p-4">
 
-  <a
-    href={candidate.fileUrl}
-    target="_blank"
-    rel="noreferrer"
-    className="
-  bg-gradient-to-r from-sky-500 to-blue-500 hover:scale-105 transition-all duration-300
-    text-white
-    px-3
-    py-2
-    rounded-lg
-    text-sm
-    "
-  >
-    View Resume
-  </a>
+  <div className="flex items-center justify-center gap-3">
 
-  <a
-    href={candidate.fileUrl}
-    download
-    className="
-   bg-gradient-to-r from-indigo-500 to-blue-500 hover:scale-105 transition-all duration-300
-    text-white
-    px-3
-    py-2
-    rounded-lg
-    text-sm
-    "
-  >
-    Download
-  </a>
+    <a
+      href={candidate.fileUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="
+      bg-gradient-to-r
+      from-sky-500
+      to-blue-500
+      hover:scale-105
+      transition-all
+      duration-300
+      text-white
+      px-4
+      py-2
+      rounded-xl
+      text-sm
+      font-medium
+      whitespace-nowrap
+      "
+    >
+      View Resume
+    </a>
+
+    <a
+      href={candidate.fileUrl}
+      download
+      className="
+      bg-gradient-to-r
+      from-indigo-500
+      to-blue-500
+      hover:scale-105
+      transition-all
+      duration-300
+      text-white
+      px-4
+      py-2
+      rounded-xl
+      text-sm
+      font-medium
+      whitespace-nowrap
+      "
+    >
+      Download
+    </a>
+
+  </div>
 
 </td>
       </tr>
