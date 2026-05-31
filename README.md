@@ -2,18 +2,20 @@
 
 ## Overview
 
-AI Resume Screening Platform is a full-stack web application that automates the initial resume screening process by comparing candidate resumes with a Job Description (JD), generating ATS-style match scores, and ranking candidates based on their suitability for the role.
+AI Resume Screening Platform is a full-stack web application that automates the initial resume screening process by comparing candidate resumes against a Job Description (JD), generating ATS-style match scores, and ranking candidates based on their suitability for the role.
 
-The platform helps recruiters and hiring teams quickly identify the most relevant candidates and reduce manual screening effort.
+The platform helps recruiters and hiring teams quickly identify the most relevant candidates, reduce manual screening effort, and streamline the hiring workflow.
 
 ---
 
 ## Live Demo
 
 ### Frontend
+
 https://ai-resume-screening-platform-ochre.vercel.app/
 
 ### Backend API
+
 https://ai-resume-screening-backend-g2eh.onrender.com
 
 ---
@@ -24,194 +26,304 @@ https://github.com/Vishal7202/ai-resume-screening-platform
 
 ---
 
-## Features Implemented
+# Features
 
-### Resume Management
+## Resume Management
 
-- Upload single resume
-- Upload multiple resumes
-- PDF resume support
-- Resume storage on server
-
-### Job Description Management
-
-- Enter Job Description manually
-- Analyze JD against uploaded resumes
-
-### Candidate Screening
-
-- Skill extraction from resumes
-- Skill extraction from JD
-- ATS-style matching score generation
-- Candidate ranking based on score
-- Missing skills identification
-- Matched skills identification
-
-### Dashboard
-
-- Candidate ranking table
-- ATS score display
-- Total resume statistics
-- Top score statistics
-- Matched candidate statistics
-- Search candidate functionality
-- Responsive UI
-
-### Backend APIs
-
-- Resume Upload API
-- JD Analysis API
-- Skill Extraction API
-- Match Score API
-- Candidate Ranking API
-
-### Deployment
-
-- Frontend deployed on Vercel
-- Backend deployed on Render
-- Publicly accessible application
+* Upload single resume
+* Upload multiple resumes
+* PDF resume support
+* DOCX resume support
+* Resume preview
+* Resume download
+* Resume fingerprint generation
+* Resume storage
 
 ---
 
-## Tech Stack
+## Job Description Management
 
-### Frontend
-
-- React.js
-- Vite
-- Tailwind CSS
-- Axios
-
-### Backend
-
-- Node.js
-- Express.js
-- Multer
-
-### File Processing
-
-- PDF Parse
-- Mammoth
-
-### Deployment
-
-- Vercel
-- Render
+* Enter Job Description manually
+* Upload Job Description file
+* PDF JD support
+* DOCX JD support
+* TXT JD support
+* Store JD in PostgreSQL
 
 ---
 
-## Project Workflow
+## Candidate Screening & ATS Scoring
+
+The platform automatically:
+
+* Extracts skills from resumes
+* Extracts skills from Job Description
+* Extracts education information
+* Extracts experience information
+* Performs keyword similarity analysis
+* Calculates ATS-style match scores
+* Identifies matched skills
+* Identifies missing skills
+* Ranks candidates from highest to lowest score
+
+### Factors Considered
+
+* Skills Match
+* Education Alignment
+* Experience Relevance
+* Keyword Similarity
+
+---
+
+## Results Dashboard
+
+Displays:
+
+* Candidate Name
+* Resume Preview
+* Match Score
+* Candidate Rank
+* Matched Skills
+* Missing Skills
+* Qualification Status
+
+Additional Features:
+
+* Search Candidates
+* CSV Export
+* Excel Export
+* Responsive Dashboard
+* ATS Statistics Cards
+
+---
+
+# Tech Stack
+
+## Frontend
+
+* React.js
+* Vite
+* Tailwind CSS
+* Axios
+
+## Backend
+
+* Node.js
+* Express.js
+* Multer
+
+## Database
+
+* PostgreSQL
+
+## File Processing
+
+* pdf-parse
+* mammoth
+
+## Deployment
+
+* Vercel
+* Render
+* Render PostgreSQL
+
+---
+
+# Project Workflow
 
 ```text
 Upload Resumes
         ↓
-Enter Job Description
+Upload / Enter Job Description
         ↓
-Extract Skills
+Resume Parsing
         ↓
-Compare Resume vs JD
+Skill Extraction
         ↓
-Generate ATS Score
+Education Extraction
         ↓
-Rank Candidates
+Experience Extraction
         ↓
-Display Results
+Keyword Analysis
+        ↓
+ATS Score Generation
+        ↓
+Candidate Ranking
+        ↓
+Store Results in PostgreSQL
+        ↓
+Display Dashboard Results
 ```
 
 ---
 
-## Scoring Approach
+# Scoring Approach
 
-The ATS score is generated using skill matching between the Job Description and Resume.
+The ATS score is generated using multiple evaluation factors.
 
-### Formula
+### Skills Matching
+
+Maximum Weight: 80%
 
 ```text
-ATS Score =
-(Matched Skills / JD Skills) × 100
+(Matched Skills / JD Skills) × 80
 ```
 
-### Factors Considered
+### Education Matching
 
-- Skills Match
-- Keyword Matching
-- Missing Skills Detection
+Maximum Weight: 20%
 
-### Output
-
-- Match Score (0–100)
-- Candidate Rank
-- Matched Skills
-- Missing Skills
-
----
-
-## Architecture
+If resume education matches JD education requirements:
 
 ```text
-Frontend (React)
-       |
-       ↓
-REST APIs (Express)
-       |
-       ↓
-Resume Processing Layer
-       |
-       ↓
-Skill Extraction Engine
-       |
-       ↓
-ATS Scoring Engine
-       |
-       ↓
-Candidate Ranking Module
++20 Points
+```
+
+### Experience Matching
+
+Maximum Weight: 10%
+
+If candidate experience satisfies JD requirements:
+
+```text
++10 Points
+```
+
+### Keyword Similarity
+
+Maximum Weight: 10%
+
+Based on matching keywords between resume and JD.
+
+### Final Score
+
+```text
+Final Score =
+Skill Score
++ Education Score
++ Experience Score
++ Keyword Score
+
+Maximum = 100
 ```
 
 ---
 
-## API Endpoints
+# Database
 
-### Upload Resume
+PostgreSQL is used for storing:
+
+* Uploaded Candidates
+* Job Descriptions
+* Screening Results
+
+### Tables
+
+#### candidates
+
+Stores uploaded candidate information.
+
+#### job_descriptions
+
+Stores submitted Job Descriptions.
+
+#### screening_results
+
+Stores ATS scores, ranking results, matched skills, and missing skills.
+
+---
+
+# Architecture
+
+```text
+React Frontend
+        │
+        ▼
+Express REST API
+        │
+        ▼
+Resume Upload Module
+        │
+        ▼
+Resume Parser
+        │
+        ├── Skill Extraction
+        ├── Education Extraction
+        ├── Experience Extraction
+        └── Keyword Analysis
+                │
+                ▼
+          ATS Scoring Engine
+                │
+                ▼
+         Candidate Ranking
+                │
+                ▼
+          PostgreSQL Storage
+                │
+                ▼
+         Results Dashboard
+```
+
+---
+
+# API Endpoints
+
+## Upload Resume
 
 ```http
 POST /upload
 ```
 
-### Save Job Description
+## Save Job Description
 
 ```http
 POST /jd
 ```
 
-### Extract Skills
+## Upload Job Description File
+
+```http
+POST /upload-jd
+```
+
+## Extract Skills
 
 ```http
 POST /extract-skills
 ```
 
-### Generate Match Score
+## Generate Match Score
 
 ```http
 POST /match-score
 ```
 
-### Rank Candidates
+## Rank Candidates
 
 ```http
 POST /rank-candidates
 ```
 
+## Database Test
+
+```http
+GET /db-test
+```
+
 ---
 
-## Setup Instructions
+# Setup Instructions
 
-### Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/Vishal7202/ai-resume-screening-platform.git
 ```
 
-### Backend Setup
+---
+
+## Backend Setup
 
 ```bash
 cd backend
@@ -225,7 +337,9 @@ Backend runs on:
 http://localhost:5000
 ```
 
-### Frontend Setup
+---
+
+## Frontend Setup
 
 ```bash
 cd frontend
@@ -241,62 +355,48 @@ http://localhost:5173
 
 ---
 
-## Assumptions
+# Environment Variables
 
-- ATS score is calculated using skill matching.
-- Skill extraction is keyword-based.
-- Candidate ranking is determined by ATS score.
-- Higher score indicates better suitability for the role.
+Create a `.env` file inside the backend folder.
 
----
-
-## Project Status
-
-### Completed
-
-- Resume Upload
-- Multiple Resume Upload
-- Job Description Input
-- ATS Scoring
-- Candidate Ranking
-- Search Functionality
-- Responsive Dashboard
-- Skill Matching
-- Missing Skills Analysis
-- Public Deployment
-- GitHub Repository
+```env
+DATABASE_URL=your_postgresql_connection_string
+```
 
 ---
 
-## Planned Improvements
+# Assumptions
 
-Future enhancements that can further improve the platform:
-
-- DOC Resume Support
-- DOCX Resume Support
-- Job Description File Upload
-- Resume Preview
-- CSV/Excel Export
-- PostgreSQL Database Integration
-- Experience Matching
-- Education Matching
-- Advanced AI-Based Scoring
-- Authentication & User Management
-- Recruiter Dashboard Analytics
+* ATS scoring is based on skill matching, education matching, experience matching, and keyword similarity.
+* Higher ATS score indicates better suitability for the role.
+* Candidate ranking is determined by the final ATS score.
+* Resumes are evaluated against a single Job Description at a time.
 
 ---
 
-## Author
+# Future Enhancements
 
-### Vishal Kumar
+* AI/LLM-based semantic matching
+* Authentication & Authorization
+* Recruiter Dashboard Analytics
+* Candidate Feedback Reports
+* Advanced Resume Insights
+* Interview Recommendation System
+
+---
+
+# Author
+
+## Vishal Kumar
 
 Full Stack Developer
 
 GitHub:
+
 https://github.com/Vishal7202
 
 ---
 
-## Project Outcome
+# Project Outcome
 
-This project successfully demonstrates an end-to-end AI-inspired resume screening workflow that automates candidate evaluation, generates ATS scores, and ranks applicants based on job suitability.
+This project successfully demonstrates an end-to-end AI-powered resume screening workflow that automates candidate evaluation, ATS score generation, ranking, resume analysis, and result management using a modern full-stack architecture.
