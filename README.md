@@ -4,11 +4,18 @@
 
 AI Resume Screening Platform is a full-stack web application that automates the initial resume screening process by comparing candidate resumes against a Job Description (JD), generating ATS-style match scores, and ranking candidates based on their suitability for the role.
 
-<<<<<<< HEAD
+![React](https://img.shields.io/badge/React-18-blue)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
+![Vercel](https://img.shields.io/badge/Frontend-Vercel-black)
+![Render](https://img.shields.io/badge/Backend-Render-purple)
+
+
+
 The platform helps recruiters and hiring teams quickly identify the most relevant candidates, reduce manual screening effort, and streamline the hiring process.
 =======
 The platform helps recruiters and hiring teams quickly identify the most relevant candidates, reduce manual screening effort, and streamline the hiring workflow.
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
+
 
 ---
 
@@ -22,15 +29,10 @@ https://ai-resume-screening-platform-ochre.vercel.app/
 
 https://ai-resume-screening-backend-g2eh.onrender.com
 
----
-
 ## GitHub Repository
 
 https://github.com/Vishal7202/ai-resume-screening-platform
 
----
-
-<<<<<<< HEAD
 # Features Implemented
 
 ## Resume Management
@@ -56,35 +58,25 @@ https://github.com/Vishal7202/ai-resume-screening-platform
 * Resume download
 * Resume fingerprint generation
 * Resume storage
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
-
----
 
 ## Job Description Management
-
-<<<<<<< HEAD
 * Enter Job Description Manually
 * Upload Job Description File
 * PDF JD Support
 * DOCX JD Support
 * TXT JD Support
 * Job Description Storage
-=======
+
 * Enter Job Description manually
 * Upload Job Description file
 * PDF JD support
 * DOCX JD support
 * TXT JD support
 * Store JD in PostgreSQL
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
-
----
 
 ## Candidate Screening & ATS Scoring
 
 The platform automatically:
-
-<<<<<<< HEAD
 * Extracts Skills from Resume
 * Extracts Skills from Job Description
 * Extracts Education Information
@@ -94,7 +86,6 @@ The platform automatically:
 * Identifies Matched Skills
 * Identifies Missing Skills
 * Ranks Candidates Automatically
-=======
 * Extracts skills from resumes
 * Extracts skills from Job Description
 * Extracts education information
@@ -104,7 +95,6 @@ The platform automatically:
 * Identifies matched skills
 * Identifies missing skills
 * Ranks candidates from highest to lowest score
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ### Factors Considered
 
@@ -113,19 +103,14 @@ The platform automatically:
 * Experience Relevance
 * Keyword Similarity
 
----
-
 ## Results Dashboard
 
 Displays:
 
 * Candidate Name
 * Resume Preview
-<<<<<<< HEAD
 * ATS Match Score
-=======
 * Match Score
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 * Candidate Rank
 * Matched Skills
 * Missing Skills
@@ -138,8 +123,6 @@ Additional Features:
 * Excel Export
 * Responsive Dashboard
 * ATS Statistics Cards
-
----
 
 # Tech Stack
 
@@ -171,9 +154,6 @@ Additional Features:
 * Render
 * Render PostgreSQL
 
----
-
-<<<<<<< HEAD
 # Database
 
 PostgreSQL is used for storing:
@@ -196,7 +176,6 @@ Stores Job Description records.
 
 Stores ATS scores, ranking results, matched skills, and missing skills.
 
----
 
 # Project Workflow
 
@@ -205,7 +184,6 @@ Stores ATS scores, ranking results, matched skills, and missing skills.
 ![Workflow Diagram](./screenshots/workflow.png)
 =======
 # Project Workflow
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ```text
 Upload Resumes
@@ -528,17 +506,15 @@ Frontend runs on:
 http://localhost:5173
 ```
 
----
-
 # Environment Variables
 
 Create a `.env` file inside the backend folder.
 
 ```env
 DATABASE_URL=your_postgresql_connection_string
-```
 
----
+
+
 
 # Assumptions
 
@@ -547,9 +523,6 @@ DATABASE_URL=your_postgresql_connection_string
 * Candidate ranking is determined by the final ATS score.
 * Resumes are evaluated against a single Job Description at a time.
 
----
-
-<<<<<<< HEAD
 # Project Status
 
 ## Completed
@@ -572,8 +545,6 @@ DATABASE_URL=your_postgresql_connection_string
 * Responsive Dashboard
 * Public Deployment
 
----
-
 # Future Enhancements
 
 * AI/LLM Based Semantic Matching
@@ -583,11 +554,8 @@ DATABASE_URL=your_postgresql_connection_string
 * Candidate Feedback Reports
 * Advanced Resume Insights
 
----
-
 # Author
 
-=======
 # Future Enhancements
 
 * AI/LLM-based semantic matching
@@ -597,11 +565,7 @@ DATABASE_URL=your_postgresql_connection_string
 * Advanced Resume Insights
 * Interview Recommendation System
 
----
-
 # Author
-
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 ## Vishal Kumar
 
 Full Stack Developer
@@ -609,8 +573,6 @@ Full Stack Developer
 GitHub:
 
 https://github.com/Vishal7202
-
----
 
 # Project Outcome
 
