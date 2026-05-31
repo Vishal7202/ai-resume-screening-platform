@@ -192,17 +192,18 @@ const topScore =
 const matchedCandidates =
   results.filter((c) => c.score >= 70).length;
 
-return ( <div className="min-h-screen bg-[#F8FAFC]">
+return ( 
+<div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
 
  {/* Header */}
-<div className="bg-white border-b border-slate-200">
+<div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950">
   <div className="max-w-7xl mx-auto px-6 py-10">
 
-    <h1 className="text-4xl font-bold text-slate-900">
+   <h1 className="text-6xl font-extrabold text-white">
       AI Resume Screening Platform
     </h1>
 
-    <p className="mt-3 text-slate-500 max-w-3xl">
+    <p className="mt-5 text-slate-300 max-w-3xl text-lg">
       Upload resumes, compare candidates with job descriptions,
       calculate ATS scores and rank applicants automatically.
     </p>
@@ -213,7 +214,7 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
   <div className="max-w-7xl mx-auto px-6 py-10">
 
     {/* Upload Resume */}
-<div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 mb-8">
+<div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl p-8 mb-8 transition-all duration-300">
   <h2 className="text-4xl font-bold mb-6">
     Upload Resumes
   </h2>
@@ -239,7 +240,7 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
     <div className="mb-10">
       <button
   onClick={handleAnalyze}
-  className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl font-semibold shadow-lg transition"
+  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 hover:shadow-2xl text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300"
 >
   {loading ? "Analyzing..." : "Analyze Candidates"}
 </button>
@@ -247,7 +248,7 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
 
     {/* Dashboard Cards */}
     <div className="grid md:grid-cols-3 gap-6 mb-10">
-      <div className="bg-white rounded-2xl shadow-lg p-6">
+      <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-6 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
         <p className="text-gray-500">Total Resumes</p>
         <h3 className="text-4xl font-bold mt-2">{totalResumes}</h3>
       </div>
@@ -268,7 +269,7 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
     </div>
 
     {/* Candidate Rankings */}
-    <div className="bg-white rounded-2xl shadow-lg p-6">
+    <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-6">
       <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
         <h2 className="text-3xl font-bold">
           Candidate Rankings
@@ -307,14 +308,14 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
           placeholder="🔍 Search Candidate..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border rounded-xl px-4 py-3 md:w-80"
+          className="border border-slate-300 rounded-2xl px-5 py-3 md:w-80 focus:ring-4 focus:ring-blue-200 outline-none"
         />
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="bg-slate-100">
+            <tr className="bg-gradient-to-r from-slate-800 to-slate-900 text-white">
               <th className="p-4 text-left">Rank</th>
               <th className="p-4 text-left">Candidate</th>
               <th className="p-4 text-left">Score</th>
@@ -332,7 +333,7 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
     filteredCandidates.map((candidate, index) => (
       <tr
         key={index}
-        className="border-b hover:bg-slate-50"
+        className="border-b hover:bg-blue-50 transition-all duration-200"
       >
         <td className="p-4 font-bold">
   #{candidate.rank}
@@ -388,8 +389,7 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
     target="_blank"
     rel="noreferrer"
     className="
-    bg-purple-600
-    hover:bg-purple-700
+   bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-105 transition-all duration-300
     text-white
     px-3
     py-2
@@ -404,8 +404,7 @@ return ( <div className="min-h-screen bg-[#F8FAFC]">
     href={candidate.fileUrl}
     download
     className="
-    bg-blue-600
-    hover:bg-blue-700
+   bg-gradient-to-r from-blue-600 to-cyan-500 hover:scale-105 transition-all duration-300
     text-white
     px-3
     py-2
