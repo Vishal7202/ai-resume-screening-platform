@@ -45,11 +45,10 @@ https://github.com/Vishal7202/ai-resume-screening-platform
 * Resume Download
 * Resume Fingerprinting
 * Resume Storage
-=======
+  
 # Features
 
 ## Resume Management
-
 * Upload single resume
 * Upload multiple resumes
 * PDF resume support
@@ -66,7 +65,6 @@ https://github.com/Vishal7202/ai-resume-screening-platform
 * DOCX JD Support
 * TXT JD Support
 * Job Description Storage
-
 * Enter Job Description manually
 * Upload Job Description file
 * PDF JD support
@@ -75,7 +73,6 @@ https://github.com/Vishal7202/ai-resume-screening-platform
 * Store JD in PostgreSQL
 
 ## Candidate Screening & ATS Scoring
-
 The platform automatically:
 * Extracts Skills from Resume
 * Extracts Skills from Job Description
@@ -117,7 +114,6 @@ Displays:
 * Qualification Status
 
 Additional Features:
-
 * Search Candidates
 * CSV Export
 * Excel Export
@@ -209,15 +205,12 @@ Store Results in PostgreSQL
 Display Dashboard Results
 ```
 
----
-
 # Scoring Approach
 
 The ATS score is generated using multiple evaluation factors.
 
 ### Skills Matching
 
-<<<<<<< HEAD
 Based on matching skills between the Resume and Job Description.
 
 ### Education Matching
@@ -276,7 +269,7 @@ Resume Parser
                 │
                 ▼
          Results Dashboard
-=======
+
 Maximum Weight: 80%
 
 ```text
@@ -319,12 +312,7 @@ Skill Score
 + Keyword Score
 
 Maximum = 100
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
-```
 
----
-
-<<<<<<< HEAD
 # Application Screenshots
 
 ### Home Page
@@ -402,9 +390,6 @@ Resume Parser
                 │
                 ▼
          Results Dashboard
-```
-
----
 
 # API Endpoints
 
@@ -414,7 +399,6 @@ Resume Parser
 POST /upload
 ```
 
-<<<<<<< HEAD
 ### Upload Job Description
 
 ```http
@@ -424,7 +408,6 @@ POST /upload-jd
 ### Save Job Description
 =======
 ## Save Job Description
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ```http
 POST /jd
@@ -453,12 +436,11 @@ POST /match-score
 ```http
 POST /rank-candidates
 ```
-
-<<<<<<< HEAD
+ HEAD
 ### Database Test
 =======
 ## Database Test
->>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
+
 
 ```http
 GET /db-test
