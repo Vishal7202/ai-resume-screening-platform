@@ -208,7 +208,7 @@ return (
         🚀 AI Powered ATS Resume Screening
       </div>
 
-      <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-slate-900">
+      <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-slate-900">
         AI Resume Screening
         <span className="block bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
           & Candidate Ranking
@@ -224,19 +224,83 @@ return (
       {/* Feature Chips */}
       <div className="flex flex-wrap gap-3 mt-8">
 
-        <span className="px-4 py-2 bg-white/70 backdrop-blur-md rounded-full text-sm font-medium text-slate-700 shadow-sm">
+        <span className="
+px-3
+py-1.5
+bg-white/70
+backdrop-blur-md
+rounded-full
+text-xs
+font-medium
+text-slate-700
+shadow-sm
+hover:-translate-y-1
+hover:shadow-lg
+hover:bg-white
+transition-all
+duration-300
+cursor-default
+">
           📄 Resume Parsing
         </span>
 
-        <span className="px-4 py-2 bg-white/70 backdrop-blur-md rounded-full text-sm font-medium text-slate-700 shadow-sm">
+        <span className="
+px-3
+py-1.5
+bg-white/70
+backdrop-blur-md
+rounded-full
+text-xs
+font-medium
+text-slate-700
+shadow-sm
+hover:-translate-y-1
+hover:shadow-lg
+hover:bg-white
+transition-all
+duration-300
+cursor-default
+">
           🎯 ATS Scoring
         </span>
 
-        <span className="px-4 py-2 bg-white/70 backdrop-blur-md rounded-full text-sm font-medium text-slate-700 shadow-sm">
+        <span className="
+px-3
+py-1.5
+bg-white/70
+backdrop-blur-md
+rounded-full
+text-xs
+font-medium
+text-slate-700
+shadow-sm
+hover:-translate-y-1
+hover:shadow-lg
+hover:bg-white
+transition-all
+duration-300
+cursor-default
+">
           🏆 Candidate Ranking
         </span>
 
-        <span className="px-4 py-2 bg-white/70 backdrop-blur-md rounded-full text-sm font-medium text-slate-700 shadow-sm">
+        <span className="
+px-3
+py-1.5
+bg-white/70
+backdrop-blur-md
+rounded-full
+text-xs
+font-medium
+text-slate-700
+shadow-sm
+hover:-translate-y-1
+hover:shadow-lg
+hover:bg-white
+transition-all
+duration-300
+cursor-default
+">
           ⚡ PostgreSQL Powered
         </span>
 
@@ -268,8 +332,8 @@ return (
 
     <div
       className="
-      w-14
-      h-14
+      w-12
+      h-12
       rounded-2xl
       bg-gradient-to-br
       from-sky-500
@@ -278,7 +342,7 @@ return (
       items-center
       justify-center
       text-white
-      text-2xl
+      text-xl
       shadow-lg
       "
     >
@@ -286,7 +350,7 @@ return (
     </div>
 
     <div>
-      <h2 className="text-3xl font-bold text-slate-900">
+      <h2 className="text-2xl font-bold text-slate-900">
         Upload Resumes
       </h2>
 
@@ -320,6 +384,7 @@ return (
   p-8
   mb-8
   hover:shadow-2xl
+  hover:-translate-y-1
   transition-all
   duration-300
 "
@@ -329,8 +394,8 @@ return (
 
     <div
       className="
-      w-14
-      h-14
+      w-12
+      h-12
       rounded-2xl
       bg-gradient-to-br
       from-indigo-500
@@ -339,7 +404,7 @@ return (
       items-center
       justify-center
       text-white
-      text-2xl
+      text-xl
       shadow-lg
       "
     >
@@ -347,7 +412,7 @@ return (
     </div>
 
     <div>
-      <h2 className="text-3xl font-bold text-slate-900">
+      <h2 className="text-2xl font-bold text-slate-900">
         Job Description
       </h2>
 
@@ -376,6 +441,7 @@ return (
     to-blue-500
     hover:scale-105
     hover:shadow-2xl
+    hover:-translate-y-1
     hover:shadow-sky-200
     text-white
     px-10
@@ -427,7 +493,7 @@ return (
           Total Resumes
         </p>
 
-        <h3 className="text-5xl font-bold text-slate-900 mt-3">
+        <h3 className="text-4xl font-bold text-slate-900 mt-3">
           {totalResumes}
         </h3>
 
@@ -477,7 +543,7 @@ return (
           Top Score
         </p>
 
-        <h3 className="text-5xl font-bold text-emerald-600 mt-3">
+        <h3 className="text-4xl font-bold text-emerald-600 mt-3">
           {topScore}%
         </h3>
 
@@ -527,7 +593,7 @@ return (
           Matched Candidates
         </p>
 
-        <h3 className="text-5xl font-bold text-sky-600 mt-3">
+        <h3 className="text-4xl font-bold text-sky-600 mt-3">
           {matchedCandidates}
         </h3>
 
@@ -535,14 +601,14 @@ return (
 
       <div
         className="
-        w-16
-        h-16
+        w-12
+        h-12
         rounded-2xl
         bg-sky-100
         flex
         items-center
         justify-center
-        text-3xl
+        text-2xl
         "
       >
         🎯
@@ -593,7 +659,7 @@ shadow-lg
 <button
   onClick={downloadExcel}
   className="
-  bbg-sky-600
+  bg-sky-600
 hover:bg-sky-700
 hover:scale-105
 transition-all
@@ -673,7 +739,7 @@ duration-200
 
         <td className="p-4">
           <span
-            className={`px-4 py-2 rounded-full text-sm font-semibold ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
               candidate.score >= 80
                 ? "bg-green-100 text-green-700"
                 : candidate.score >= 50
