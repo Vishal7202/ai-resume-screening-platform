@@ -4,7 +4,11 @@
 
 AI Resume Screening Platform is a full-stack web application that automates the initial resume screening process by comparing candidate resumes against a Job Description (JD), generating ATS-style match scores, and ranking candidates based on their suitability for the role.
 
+<<<<<<< HEAD
 The platform helps recruiters and hiring teams quickly identify the most relevant candidates, reduce manual screening effort, and streamline the hiring process.
+=======
+The platform helps recruiters and hiring teams quickly identify the most relevant candidates, reduce manual screening effort, and streamline the hiring workflow.
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ---
 
@@ -26,6 +30,7 @@ https://github.com/Vishal7202/ai-resume-screening-platform
 
 ---
 
+<<<<<<< HEAD
 # Features Implemented
 
 ## Resume Management
@@ -38,17 +43,40 @@ https://github.com/Vishal7202/ai-resume-screening-platform
 * Resume Download
 * Resume Fingerprinting
 * Resume Storage
+=======
+# Features
+
+## Resume Management
+
+* Upload single resume
+* Upload multiple resumes
+* PDF resume support
+* DOCX resume support
+* Resume preview
+* Resume download
+* Resume fingerprint generation
+* Resume storage
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ---
 
 ## Job Description Management
 
+<<<<<<< HEAD
 * Enter Job Description Manually
 * Upload Job Description File
 * PDF JD Support
 * DOCX JD Support
 * TXT JD Support
 * Job Description Storage
+=======
+* Enter Job Description manually
+* Upload Job Description file
+* PDF JD support
+* DOCX JD support
+* TXT JD support
+* Store JD in PostgreSQL
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ---
 
@@ -56,6 +84,7 @@ https://github.com/Vishal7202/ai-resume-screening-platform
 
 The platform automatically:
 
+<<<<<<< HEAD
 * Extracts Skills from Resume
 * Extracts Skills from Job Description
 * Extracts Education Information
@@ -65,6 +94,17 @@ The platform automatically:
 * Identifies Matched Skills
 * Identifies Missing Skills
 * Ranks Candidates Automatically
+=======
+* Extracts skills from resumes
+* Extracts skills from Job Description
+* Extracts education information
+* Extracts experience information
+* Performs keyword similarity analysis
+* Calculates ATS-style match scores
+* Identifies matched skills
+* Identifies missing skills
+* Ranks candidates from highest to lowest score
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ### Factors Considered
 
@@ -81,7 +121,11 @@ Displays:
 
 * Candidate Name
 * Resume Preview
+<<<<<<< HEAD
 * ATS Match Score
+=======
+* Match Score
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 * Candidate Rank
 * Matched Skills
 * Missing Skills
@@ -129,6 +173,7 @@ Additional Features:
 
 ---
 
+<<<<<<< HEAD
 # Database
 
 PostgreSQL is used for storing:
@@ -158,6 +203,9 @@ Stores ATS scores, ranking results, matched skills, and missing skills.
 ### Workflow Diagram
 
 ![Workflow Diagram](./screenshots/workflow.png)
+=======
+# Project Workflow
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ```text
 Upload Resumes
@@ -191,6 +239,7 @@ The ATS score is generated using multiple evaluation factors.
 
 ### Skills Matching
 
+<<<<<<< HEAD
 Based on matching skills between the Resume and Job Description.
 
 ### Education Matching
@@ -249,10 +298,55 @@ Resume Parser
                 │
                 ▼
          Results Dashboard
+=======
+Maximum Weight: 80%
+
+```text
+(Matched Skills / JD Skills) × 80
+```
+
+### Education Matching
+
+Maximum Weight: 20%
+
+If resume education matches JD education requirements:
+
+```text
++20 Points
+```
+
+### Experience Matching
+
+Maximum Weight: 10%
+
+If candidate experience satisfies JD requirements:
+
+```text
++10 Points
+```
+
+### Keyword Similarity
+
+Maximum Weight: 10%
+
+Based on matching keywords between resume and JD.
+
+### Final Score
+
+```text
+Final Score =
+Skill Score
++ Education Score
++ Experience Score
++ Keyword Score
+
+Maximum = 100
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 ```
 
 ---
 
+<<<<<<< HEAD
 # Application Screenshots
 
 ### Home Page
@@ -274,13 +368,75 @@ Resume Parser
 ---
 
 # API Endpoints
+=======
+# Database
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
-### Upload Resume
+PostgreSQL is used for storing:
+
+* Uploaded Candidates
+* Job Descriptions
+* Screening Results
+
+### Tables
+
+#### candidates
+
+Stores uploaded candidate information.
+
+#### job_descriptions
+
+Stores submitted Job Descriptions.
+
+#### screening_results
+
+Stores ATS scores, ranking results, matched skills, and missing skills.
+
+---
+
+# Architecture
+
+```text
+React Frontend
+        │
+        ▼
+Express REST API
+        │
+        ▼
+Resume Upload Module
+        │
+        ▼
+Resume Parser
+        │
+        ├── Skill Extraction
+        ├── Education Extraction
+        ├── Experience Extraction
+        └── Keyword Analysis
+                │
+                ▼
+          ATS Scoring Engine
+                │
+                ▼
+         Candidate Ranking
+                │
+                ▼
+          PostgreSQL Storage
+                │
+                ▼
+         Results Dashboard
+```
+
+---
+
+# API Endpoints
+
+## Upload Resume
 
 ```http
 POST /upload
 ```
 
+<<<<<<< HEAD
 ### Upload Job Description
 
 ```http
@@ -288,30 +444,43 @@ POST /upload-jd
 ```
 
 ### Save Job Description
+=======
+## Save Job Description
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ```http
 POST /jd
 ```
 
-### Extract Skills
+## Upload Job Description File
+
+```http
+POST /upload-jd
+```
+
+## Extract Skills
 
 ```http
 POST /extract-skills
 ```
 
-### Generate Match Score
+## Generate Match Score
 
 ```http
 POST /match-score
 ```
 
-### Rank Candidates
+## Rank Candidates
 
 ```http
 POST /rank-candidates
 ```
 
+<<<<<<< HEAD
 ### Database Test
+=======
+## Database Test
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 
 ```http
 GET /db-test
@@ -380,6 +549,7 @@ DATABASE_URL=your_postgresql_connection_string
 
 ---
 
+<<<<<<< HEAD
 # Project Status
 
 ## Completed
@@ -417,6 +587,21 @@ DATABASE_URL=your_postgresql_connection_string
 
 # Author
 
+=======
+# Future Enhancements
+
+* AI/LLM-based semantic matching
+* Authentication & Authorization
+* Recruiter Dashboard Analytics
+* Candidate Feedback Reports
+* Advanced Resume Insights
+* Interview Recommendation System
+
+---
+
+# Author
+
+>>>>>>> 2f5e24d436fbcf996bbfe27431694c8d23a5ad22
 ## Vishal Kumar
 
 Full Stack Developer
