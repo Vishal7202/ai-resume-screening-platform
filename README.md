@@ -28,19 +28,6 @@ https://ai-resume-screening-backend-g2eh.onrender.com
 ## GitHub Repository
 
 https://github.com/Vishal7202/ai-resume-screening-platform
-
-# Features Implemented
-
-## Resume Management
-
-* Upload Single Resume
-* Upload Multiple Resumes
-* PDF Resume Support
-* DOCX Resume Support
-* Resume Preview
-* Resume Download
-* Resume Fingerprinting
-* Resume Storage
   
 # Features
 
