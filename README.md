@@ -179,31 +179,6 @@ Stores ATS scores, ranking results, matched skills, and missing skills.
 
 ![Workflow Diagram](./screenshots/workflow.png)
 =======
-# Project Workflow
-
-```text
-Upload Resumes
-        ↓
-Upload / Enter Job Description
-        ↓
-Resume Parsing
-        ↓
-Skill Extraction
-        ↓
-Education Extraction
-        ↓
-Experience Extraction
-        ↓
-Keyword Analysis
-        ↓
-ATS Score Generation
-        ↓
-Candidate Ranking
-        ↓
-Store Results in PostgreSQL
-        ↓
-Display Dashboard Results
-```
 
 # Scoring Approach
 
